@@ -25,3 +25,13 @@ class UserSettings(models.Model):
                               on_delete=models.CASCADE,
                               primary_key=True)
     theme = models.CharField(max_length=10)
+
+
+class Organization(models.Model):
+    org_name = models.CharField(default='', max_length=15)
+    org_description = models.TextField(blank=True, max_length=365)
+
+
+class Rating(models.Model):
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
