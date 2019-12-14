@@ -15,6 +15,7 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         if 'stars' in request.data:
 
             organization = Organization.objects.get(id=pk)
+            stars = request.data['stars']
             print('organization title', organization.org_name)
 
             response = {'message': 'Its Working'}
