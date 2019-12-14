@@ -29,7 +29,9 @@ urlpatterns = [
     url('auth/login', AuthView.login, name='User login'),
     url('auth/sign-up', AuthView.sign_up, name='Sign up a new user'),
     url('auth/request-pass', AuthView.request_pass, name='Send an email with password'),
-    url('auth/reset-pass', AuthView.reset_pass, name='Reset a pasword'),
+    url('auth/reset-pass', AuthView.reset_pass, name='Reset a password'),
     url('auth/sign-out', AuthView.sign_out, name='Sign out'),
     url('settings/current', UserSettings.as_view(), name='User settings'),
+    url('organization', OrganizationViewSet, name='organization'),
+    url('ratings', RatingViewSet, name='ratings'),
 ]
