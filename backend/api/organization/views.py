@@ -13,6 +13,9 @@ class OrganizationViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['POST'])
     def rate_organization(self, request, pk=None):
         if 'stars' in request.data:
+
+            print(pk)
+
             response = {'message': 'Its Working'}
             return Response(response, status=status.HTTP_200_OK)
         else:
