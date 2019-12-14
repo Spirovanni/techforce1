@@ -14,7 +14,8 @@ class OrganizationViewSet(viewsets.ModelViewSet):
     def rate_organization(self, request, pk=None):
         if 'stars' in request.data:
 
-            print(pk)
+            organization = Organization.objects.get(id=pk)
+            print('organization title', organization.org_name)
 
             response = {'message': 'Its Working'}
             return Response(response, status=status.HTTP_200_OK)
