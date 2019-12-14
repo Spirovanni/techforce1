@@ -6,9 +6,9 @@ from ..serializers import OrganizationSerializer, RatingSerializer
 
 class OrganizationViewSet(viewsets.ModelViewSet):
     queryset = Organization.objects.all()
-    serializer_class = (OrganizationSerializer, )
+    serializer_class = OrganizationSerializer
 
 
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
-    serializer_class = (RatingSerializer, )
+    serializer_class = RatingSerializer
