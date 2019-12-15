@@ -23,6 +23,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
 import { StatusCardComponent } from './status-card/status-card.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { OrganizationsComponent } from './organizations/organizations.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { RoomSelectorComponent } from './rooms/room-selector/room-selector.component';
 import { TemperatureComponent } from './temperature/temperature.component';
@@ -63,6 +64,7 @@ import { AuthModule } from '../../@auth/auth.module';
     StatusCardComponent,
     TemperatureDraggerComponent,
     ContactsComponent,
+    OrganizationsComponent,
     RoomSelectorComponent,
     TemperatureComponent,
     RoomsComponent,
