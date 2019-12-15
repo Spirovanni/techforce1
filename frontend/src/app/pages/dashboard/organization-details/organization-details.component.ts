@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'ngx-organization-details',
-  styleUrls: ['./organizations-details.component.scss'],
+  styleUrls: ['./organization-details.component.scss'],
   templateUrl: './organization-details.component.html',
 })
 export class OrganizationDetailsComponent  {

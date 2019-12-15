@@ -7,9 +7,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-organization',
-  styleUrls: ['./organizations.component.scss'],
-  templateUrl: './organizations.component.html',
+  selector: 'ngx-organization-list',
+  styleUrls: ['./organization-list.component.scss'],
+  templateUrl: './organization-list.component.html',
 })
 export class OrganizationListComponent  {
 

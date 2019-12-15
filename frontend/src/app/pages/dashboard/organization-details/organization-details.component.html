@@ -5,7 +5,7 @@
   -->
 
 <nb-card size="giant">
-  <nb-card-header>Organization Management</nb-card-header>
+  <nb-card-header>Organization Details</nb-card-header>
   <nb-tabset fullWidth>
 
     <nb-tab tabTitle="Organizations" [nbSpinner]="!contacts">
@@ -19,10 +19,7 @@
 
     <nb-tab tabTitle="Recent">
       <nb-list>
-        <nb-list-item class="contact" *ngFor="let c of recent">
-          <nb-user [picture]="c.picture | ngxAuthToken | async" [name]="c.name" [title]="c.type" size="large"></nb-user>
-          <span class="caption">{{ c.time | date: 'shortTime' }}</span>
-        </nb-list-item>
+
       </nb-list>
     </nb-tab>
 

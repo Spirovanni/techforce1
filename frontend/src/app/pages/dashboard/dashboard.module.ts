@@ -23,7 +23,9 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
 import { StatusCardComponent } from './status-card/status-card.component';
 import { ContactsComponent } from './contacts/contacts.component';
-import { OrganizationsComponent } from './organization-list/organizations.component';
+import { OrganizationListComponent } from './organization-list/organization-list.component';
+import { OrganizationFormComponent } from './organization-form/organization-form.component';
+import { OrganizationDetailsComponent } from './organization-details/organization-details.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { RoomSelectorComponent } from './rooms/room-selector/room-selector.component';
 import { TemperatureComponent } from './temperature/temperature.component';
@@ -64,7 +66,9 @@ import { AuthModule } from '../../@auth/auth.module';
     StatusCardComponent,
     TemperatureDraggerComponent,
     ContactsComponent,
-    OrganizationsComponent,
+    OrganizationListComponent,
+    OrganizationFormComponent,
+    OrganizationDetailsComponent,
     RoomSelectorComponent,
     TemperatureComponent,
     RoomsComponent,
