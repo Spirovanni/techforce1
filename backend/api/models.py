@@ -32,6 +32,21 @@ class Organization(models.Model):
     org_name = models.CharField(default='', max_length=15)
     org_description = models.TextField(blank=True, max_length=365)
 
+    def no_of_ratings(self):
+        ratings = Rating.objects.filter(organization=self)
+        return len(ratings)
+
+    def avg_rating(self):
+        sum = 0
+        ratings = Rating.objects.filter(organization=self)
+        for rating in ratings:
+            sum += rating
+
+        if len(ratings) > 0:
+            return sum / len(ratings)
+        else:
+            return 0
+
 
 class Rating(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
