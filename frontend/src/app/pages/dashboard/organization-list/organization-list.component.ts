@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
   templateUrl: './organization-list.component.html',
 })
 export class OrganizationListComponent  {
+  organizations = ['San Diego State', 'Apple', 'SDG&E'];
 
   constructor() {
 

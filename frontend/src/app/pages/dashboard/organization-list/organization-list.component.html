@@ -8,13 +8,15 @@
   <nb-card-header>Organization List</nb-card-header>
   <nb-tabset fullWidth>
 
-    <nb-tab tabTitle="Organizations" [nbSpinner]="!contacts">
-<!--      <nb-list>-->
-<!--        <nb-list-item class="contact" *ngFor="let c of contacts">-->
+    <nb-tab tabTitle="Organizations" [nbSpinner]="!organizations">
+
+      <nb-list>
+        <nb-list-item class="contact" *ngFor="let organization of organizations">
 <!--          <nb-user [picture]="c.picture | ngxAuthToken | async" [name]="c.name" [title]="c.type" size="large"></nb-user>-->
 <!--          <nb-icon icon="phone-outline" pack="eva"></nb-icon>-->
-<!--        </nb-list-item>-->
-<!--      </nb-list>-->
+          <h3>{{organization}}</h3>
+        </nb-list-item>
+      </nb-list>
     </nb-tab>
 
     <nb-tab tabTitle="Recent">
