@@ -10,6 +10,7 @@ import { UserData } from '../../interfaces/common/users';
 import { UsersService } from './services/users.service';
 import { UsersApi } from './api/users.api';
 import { HttpService } from './api/http.service';
+import { ApiService } from './services/api.service';
 import { CountryData } from '../../interfaces/common/countries';
 import { CountriesService } from './services/countries.service';
 import { CountriesApi } from './api/countries.api';
@@ -36,6 +37,7 @@ export class CommonBackendModule {
       providers: [
         ...API,
         ...SERVICES,
+        ApiService,
       ],
     };
   }
