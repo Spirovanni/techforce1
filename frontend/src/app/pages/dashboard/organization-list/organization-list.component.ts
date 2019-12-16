@@ -4,17 +4,29 @@
  * See LICENSE_SINGLE_APP / LICENSE_MULTI_APP in the 'docs' folder for license information on type of purchased license.
  */
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../@core/backend/common/services/api.service';
 
 @Component({
   selector: 'ngx-organization-list',
   styleUrls: ['./organization-list.component.scss'],
   templateUrl: './organization-list.component.html',
 })
-export class OrganizationListComponent  {
-  organizations = ['San Diego State', 'Apple', 'SDG&E'];
+export class OrganizationListComponent implements OnInit {
+  organizations: Object = [];
 
-  constructor() {
+  constructor(
+    private apiService: ApiService,
+  ) {
 
   }
+  ngOnInit() {
+    this.apiService.getOrganizations().subscribe(
+      data => {
+        this.organizations = data;
+      },
+      error => console.log(error),
+    );
+  }
+
 }

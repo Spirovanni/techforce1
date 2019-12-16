@@ -20,9 +20,6 @@ from rest_framework import routers
 # from django.conf.urls import include
 from .organization.views import OrganizationViewSet, RatingViewSet
 
-router = routers.DefaultRouter()
-router.register('organization', OrganizationViewSet)
-router.register('ratings', RatingViewSet)
 
 urlpatterns = [
     url('users/current', UserView.as_view(), name='Current user'),
@@ -32,6 +29,6 @@ urlpatterns = [
     url('auth/reset-pass', AuthView.reset_pass, name='Reset a password'),
     url('auth/sign-out', AuthView.sign_out, name='Sign out'),
     url('settings/current', UserSettings.as_view(), name='User settings'),
-    url('organization', OrganizationViewSet, name='organization'),
+    url('organizations', OrganizationViewSet, name='organization'),
     url('ratings', RatingViewSet, name='ratings'),
 ]
