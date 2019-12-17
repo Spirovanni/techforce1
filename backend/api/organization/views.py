@@ -15,7 +15,8 @@ from ..models import Organization, Rating
 from ..serializers import OrganizationSerializer, RatingSerializer
 
 
-class OrganizationViewSet(viewsets.ModelViewSet):
+class OrganizationViewSet(APIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Organization.objects.all()
     serializer_class = OrganizationSerializer
 
@@ -48,6 +49,6 @@ class OrganizationViewSet(viewsets.ModelViewSet):
     #         return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 
-class RatingViewSet(viewsets.ModelViewSet):
+class RatingViewSet(APIView):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
