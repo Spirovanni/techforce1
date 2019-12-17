@@ -117,6 +117,18 @@ def send_password_reset_link(email):
         raise ValueError('No user found')
 
 
+def reset_user_password(token, new_password):
+    payload = __get_aes_obj().decrypt(token)
+    obj = json.loads(payload)
+
+    if obj['valid'] < time.time():
+        raise Exception('Reset password token has expired')
+
+    user = get_user_by_id(obj['user_id'])
+    if user:
+        update_user_password(user, new_password)
+
+
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
     if 'stars' in request.data:
