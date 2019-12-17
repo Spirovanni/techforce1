@@ -49,6 +49,10 @@ def get_user_settings_by_id(id):
     return UserSettings.objects.get(id=id)
 
 
+def check_password(user, password):
+    return handler.verify(password, user.password) if user else False
+
+
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
     if 'stars' in request.data:
