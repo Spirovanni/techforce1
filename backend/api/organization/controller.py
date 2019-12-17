@@ -52,6 +52,34 @@ def get_user_settings_by_id(id):
 def check_password(user, password):
     return handler.verify(password, user.password) if user else False
 
+def create_user(email, password, fullname, login='', age=18, street='',
+                city='', zip='', role='user'):
+    res = fullname.split(' ')
+    first_name = '' if len(res) == 1 else res[0]
+    last_name = res[0] if len(res) == 1 else ' '.join(res[1:])
+
+    user = User(email=email,
+                password=generate_password_hash(password),
+                first_name=first_name,
+                last_name=last_name,
+                login=login,
+                age=age,
+                street=street,
+                city=city,
+                zip=zip,
+                role=role)
+
+    user_settings = UserSettings(id=user.id,
+                                 theme='default')
+    user.save()
+    user_settings.save()
+
+
+def update_user_password(user, new_password):
+    user.password = generate_password_hash(new_password)
+    user.objects.filter(email=user.email).update(password=user.password)
+    user.save()
+
 
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
