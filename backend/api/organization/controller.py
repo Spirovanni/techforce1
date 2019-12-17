@@ -85,6 +85,19 @@ def check_user_exists(email):
     return True if get_user_by_email(email) else False
 
 
+def update_user(user):
+    user.objects.filter(email=user.email).update(password=user.password,
+                                                 first_name=user.first_name,
+                                                 last_name=user.last_name,
+                                                 login=user.login,
+                                                 age=user.age,
+                                                 street=user.street,
+                                                 city=user.city,
+                                                 zip=user.zip,
+                                                 role=user.role)
+    user.save()
+
+
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
     if 'stars' in request.data:
