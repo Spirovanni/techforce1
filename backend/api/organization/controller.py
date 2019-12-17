@@ -98,6 +98,10 @@ def update_user(user):
     user.save()
 
 
+def generate_password_hash(password):
+    return handler.hash(secret=password)
+
+
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
     if 'stars' in request.data:
