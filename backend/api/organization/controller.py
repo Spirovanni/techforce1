@@ -34,6 +34,13 @@ def get_user_by_email(email):
 
     return user
 
+
+def get_user_by_id(id):
+    if not id:
+        raise Exception('No user id provided.')
+
+    return User.objects.get(id=id)
+
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
     if 'stars' in request.data:
