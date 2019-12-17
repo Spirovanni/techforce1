@@ -16,11 +16,23 @@ from ..serializers import OrganizationSerializer, RatingSerializer
 
 encryptor = None
 
+
 def __get_aes_obj():
     global encryptor
     if not encryptor:
         encryptor = AESCipher(settings.CONFIG['PASSWORD_RECOVERY_SECRET'])
     return encryptor
+
+
+def get_user_by_email(email):
+    if not email:
+        raise Exception('No user email provided.')
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        user = None
+
+    return user
 
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
