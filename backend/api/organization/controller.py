@@ -81,6 +81,10 @@ def update_user_password(user, new_password):
     user.save()
 
 
+def check_user_exists(email):
+    return True if get_user_by_email(email) else False
+
+
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
     if 'stars' in request.data:
