@@ -1,10 +1,26 @@
+from passlib.hash import django_pbkdf2_sha256 as handler
+import time
+from Crypto.Cipher import AES
+from Crypto import Random
+import json
+import hashlib
+from django.conf import settings
+from ..email import BaseEmailClient
+from ..models import User, UserSettings
+
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from django.contrib.auth.models import User
 from ..models import Organization, Rating
 from ..serializers import OrganizationSerializer, RatingSerializer
 
+encryptor = None
+
+def __get_aes_obj():
+    global encryptor
+    if not encryptor:
+        encryptor = AESCipher(settings.CONFIG['PASSWORD_RECOVERY_SECRET'])
+    return encryptor
 
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
