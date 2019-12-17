@@ -102,6 +102,21 @@ def generate_password_hash(password):
     return handler.hash(secret=password)
 
 
+def send_password_reset_link(email):
+    user = get_user_by_email(email)
+    if user:
+        obj = {'user_id': user.id,
+               'valid': time.time() + settings.CONFIG['PASSWORD_RECOVERY_TTL']}
+        payload = json.dumps(obj, ensure_ascii=False)
+
+        asd = BaseEmailClient()
+        asd.send_password_recovery_email(user.email,
+                                         user.last_name if not user.first_name else user.first_name,
+                                         __get_aes_obj().encrypt(payload))
+    else:
+        raise ValueError('No user found')
+
+
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
     if 'stars' in request.data:
