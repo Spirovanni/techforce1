@@ -41,6 +41,14 @@ def get_user_by_id(id):
 
     return User.objects.get(id=id)
 
+
+def get_user_settings_by_id(id):
+    if not id:
+        raise Exception('No user id provided.')
+
+    return UserSettings.objects.get(id=id)
+
+
 @action(detail=True, methods=['POST'])
 def rate_organization(self, request, pk=None):
     if 'stars' in request.data:
