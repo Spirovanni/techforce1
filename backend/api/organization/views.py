@@ -15,7 +15,7 @@ from ..models import Organization, Rating
 from ..serializers import OrganizationSerializer, RatingSerializer
 
 
-class OrganizationViewSet(APIView):
+class OrganizationView(APIView):
     permission_classes = (IsAuthenticated,)
     queryset = Organization.objects.all()
     serializer_class = OrganizationSerializer

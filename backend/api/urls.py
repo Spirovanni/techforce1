@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from .auth.views import AuthView
 from .user.views import UserView, UserSettings
+from .organization.views import O
 from rest_framework import routers
 # from django.conf.urls import include
 from .organization.views import OrganizationViewSet, RatingViewSet
