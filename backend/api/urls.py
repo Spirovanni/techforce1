@@ -16,10 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from .auth.views import AuthView
 from .user.views import UserView, UserSettings
-from .organization.views import O
 from rest_framework import routers
 # from django.conf.urls import include
-from .organization.views import OrganizationViewSet, RatingViewSet
+from .organization.views import OrganizationView, RatingViewSet
 
 
 urlpatterns = [
@@ -30,6 +29,6 @@ urlpatterns = [
     url('auth/reset-pass', AuthView.reset_pass, name='Reset a password'),
     url('auth/sign-out', AuthView.sign_out, name='Sign out'),
     url('settings/current', UserSettings.as_view(), name='User settings'),
-    url('organizations', OrganizationViewSet, name='organization'),
+    url('organizations/current', OrganizationView.as_view(), name='Organization'),
     url('ratings', RatingViewSet, name='ratings'),
 ]
