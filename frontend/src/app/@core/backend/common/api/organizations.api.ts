@@ -7,5 +7,6 @@ import { HttpService } from './http.service';
 export class OrganizationsApi {
   private readonly apiController: string = 'organizations';
 
+  constructor(private api: HttpService) {}
 
 }
