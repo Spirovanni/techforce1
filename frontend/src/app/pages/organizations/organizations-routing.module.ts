@@ -10,7 +10,7 @@ const routes: Routes = [{
   component: OrganizationsComponent,
   children: [
     {
-      path: 'edit/:id',
+      path: 'organization',
       canActivate: [AdminGuard],
       component: OrganizationComponent,
     },
