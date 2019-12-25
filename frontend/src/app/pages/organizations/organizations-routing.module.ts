@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { OrganizationsComponent } from './organizations.component';
-import { O } from './organization/organization.component';
-import {AdminGuard} from '../../@auth/admin.guard';
+import { OrganizationComponent } from './organization/organization.component';
+import { AdminGuard } from '../../@auth/admin.guard';
 
 const routes: Routes = [{
   path: '',
@@ -12,7 +12,7 @@ const routes: Routes = [{
     {
       path: 'edit/:id',
       canActivate: [AdminGuard],
-      component: OrganizationsComponent,
+      component: OrganizationComponent,
     },
 
   ],
