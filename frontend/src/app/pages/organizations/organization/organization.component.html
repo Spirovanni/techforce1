@@ -1,15 +1,18 @@
 <nb-card>
   <nb-card-header>{{mode}} organization</nb-card-header>
   <nb-card-body>
-    <div [formGroup]="organizationForm" class="container">
-      <div class="form-group">
-        <label for="org_name">First Name</label>
-        <input nbInput id="org_name" formControlName="org_Name"
-               [status]="(orgName?.hasError('minLength') || orgName?.hasError('maxLength')) ? 'danger' : 'primary'"
-               class="form-control" placeholder="Last Name">
-        <ngx-validation-message label="Organization Name" [showMinLength]="orgName?.hasError('minLength')"
-                                [showMaxLength]="orgName?.hasError('maxLength')" minLength=3 maxLength=20></ngx-validation-message>
-      </div>
+    <div class="container">
+      <h3>Hello There</h3>
+    </div>
+<!--    <div [formGroup]="organizationForm" class="container">-->
+<!--      <div class="form-group">-->
+<!--        <label for="org_name">First Name</label>-->
+<!--        <input nbInput id="org_name" formControlName="org_Name"-->
+<!--               [status]="(orgName?.hasError('minLength') || orgName?.hasError('maxLength')) ? 'danger' : 'primary'"-->
+<!--               class="form-control" placeholder="Last Name">-->
+<!--        <ngx-validation-message label="Organization Name" [showMinLength]="orgName?.hasError('minLength')"-->
+<!--                                [showMaxLength]="orgName?.hasError('maxLength')" minLength=3 maxLength=20></ngx-validation-message>-->
+<!--      </div>-->
 
 <!--      <div class="form-group">-->
 <!--        <label for="lastName">Last Name</label>-->
@@ -63,10 +66,10 @@
 <!--        <label for="inputZipCode">Zip Code</label>-->
 <!--        <input nbInput class="form-control" id="inputZipCode" placeholder="Zip Code" formControlName="zipCode">-->
 <!--      </div>-->
-    </div>
+<!--    </div>-->
   </nb-card-body>
   <nb-card-footer>
-    <button nbButton status="primary" [disabled]="!organizationForm.valid" (click)="save()" hero>Submit</button>
-    <button nbButton status="info" (click)="back()" hero>Back</button>
+<!--    <button nbButton status="primary" [disabled]="!organizationForm.valid" (click)="save()" hero>Submit</button>-->
+<!--    <button nbButton status="info" (click)="back()" hero>Back</button>-->
   </nb-card-footer>
 </nb-card>
