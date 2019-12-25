@@ -10,8 +10,6 @@ import { NbToastrService } from '@nebular/theme';
 
 import { OrganizationData, Organization } from '../../../@core/interfaces/common/organizations';
 import { EMAIL_PATTERN, NUMBERS_PATTERN } from '../../../@auth/components';
-import {User, UserData} from '../../../@core/interfaces/common/users';
-import {UserFormMode} from '../../users/user/user.component';
 
 
 export enum OrganizationFormMode {
@@ -27,32 +25,18 @@ export enum OrganizationFormMode {
   styleUrls: ['./organization.component.scss'],
 })
 export class OrganizationComponent implements OnInit, OnDestroy {
-  userForm: FormGroup;
+  organizationForm: FormGroup;
 
   protected readonly unsubscribe$ = new Subject<void>();
 
-  get firstName() { return this.userForm.get('firstName'); }
+  get orgName() { return this.organizationForm.get('orgName'); }
 
-  get lastName() { return this.userForm.get('lastName'); }
-
-  get userName() { return this.userForm.get('userName'); }
-
-  get email() { return this.userForm.get('email'); }
-
-  get age() { return this.userForm.get('age'); }
-
-  get street() { return this.userForm.get('address').get('street'); }
-
-  get city() { return this.userForm.get('address').get('city'); }
-
-  get zipCode() { return this.userForm.get('address').get('zipCode'); }
-
-  mode: UserFormMode;
-  setViewMode(viewMode: UserFormMode) {
+  mode: OrganizationFormMode;
+  setViewMode(viewMode: OrganizationFormMode) {
     this.mode = viewMode;
   }
 
-  constructor(private usersService: UserData,
+  constructor(private organizationsService: OrganizationData,
               private router: Router,
               private route: ActivatedRoute,
               private toasterService: NbToastrService,
@@ -60,13 +44,14 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.initUserForm();
-    this.loadUserData();
+    this.initOrganizationForm();
+    this.loadOrganizationData();
   }
 
-  initUserForm() {
-    this.userForm = this.fb.group({
+  initOrganizationForm() {
+    this.organizationForm = this.fb.group({
       id: this.fb.control(''),
+      orgName: this.fb.control(''),
       role: this.fb.control(''),
       firstName: this.fb.control('', [Validators.minLength(3), Validators.maxLength(20)]),
       lastName: this.fb.control('', [Validators.minLength(3), Validators.maxLength(20)]),
@@ -86,45 +71,36 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   }
 
   get canEdit(): boolean {
-    return this.mode !== UserFormMode.VIEW;
+    return this.mode !== OrganizationFormMode.VIEW;
   }
 
 
-  loadUserData() {
+  loadOrganizationData() {
     const id = this.route.snapshot.paramMap.get('id');
     const isProfile = this.route.snapshot.queryParamMap.get('profile');
     if (isProfile) {
-      this.setViewMode(UserFormMode.EDIT_SELF);
-      this.loadUser();
+      this.setViewMode(OrganizationFormMode.EDIT_SELF);
+      this.loadOrganization();
     } else {
       if (id) {
-        this.setViewMode(UserFormMode.EDIT);
-        this.loadUser(id);
+        this.setViewMode(OrganizationFormMode.EDIT);
+        this.loadOrganization(id);
       } else {
-        this.setViewMode(UserFormMode.ADD);
+        this.setViewMode(OrganizationFormMode.ADD);
       }
     }
   }
 
-  loadUser(id?) {
-    const loadUser = this.mode === UserFormMode.EDIT_SELF
-      ? this.usersService.getCurrentUser() : this.usersService.get(id);
-    loadUser
+  loadOrganization(id?) {
+    const loadOrganization = this.mode === OrganizationFormMode.EDIT_SELF
+      ? this.organizationsService.getCurrentOrganization() : this.organizationsService.get(id);
+    loadOrganization
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((user) => {
-        this.userForm.setValue({
-          id: user.id,
-          role: user.role,
-          firstName: user.firstName ? user.firstName : '',
-          lastName: user.lastName ? user.lastName : '',
-          userName: user.userName ? user.userName : '',
-          age: user.age ? user.age : '',
-          email: user.email,
-          address: {
-            street: (user.address && user.address.street) ? user.address.street : '',
-            city: (user.address && user.address.city) ? user.address.city : '',
-            zipCode: (user.address && user.address.zipCode) ? user.address.zipCode : '',
-          },
+      .subscribe((organization) => {
+        this.organizationForm.setValue({
+          id: organization.id,
+          org_name: organization.org_name,
+          org_description: organization.org_description,
         });
 
         // this is a place for value changes handling
@@ -133,27 +109,27 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   }
 
 
-  convertToUser(value: any): User {
-    const user: User = value;
-    return user;
+  convertToOrganization(value: any): Organization {
+    const organization: Organization = value;
+    return organization;
   }
 
   save() {
-    const user: User = this.convertToUser(this.userForm.value);
+    const organization: Organization = this.convertToOrganization(this.organizationForm.value);
 
-    let observable = new Observable<User>();
-    if (this.mode === UserFormMode.EDIT_SELF) {
-      observable = this.usersService.updateCurrent(user);
+    let observable = new Observable<Organization>();
+    if (this.mode === OrganizationFormMode.EDIT_SELF) {
+      observable = this.organizationsService.updateCurrent(organization);
     } else {
-      observable = user.id
-        ? this.usersService.update(user)
-        : this.usersService.create(user);
+      observable = organization.id
+        ? this.organizationsService.update(organization)
+        : this.organizationsService.create(organization);
     }
 
     observable
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => {
-        this.toasterService.success('', `Item ${this.mode === UserFormMode.ADD ? 'created' : 'updated' }!`);
+        this.toasterService.success('', `Item ${this.mode === OrganizationFormMode.ADD ? 'created' : 'updated' }!`);
         this.back();
       });
   }
