@@ -11,3 +11,54 @@ import { OrganizationsComponent } from './organizations.component';
 import { OrganizationComponent } from './organization/organization.component';
 import { ComponentsModule } from '../../@components/components.module';
 // components
+
+import {
+  NbActionsModule,
+  NbButtonModule,
+  NbCardModule,
+  NbInputModule,
+  NbTabsetModule,
+  NbUserModule,
+  NbRadioModule,
+  NbSelectModule,
+  NbListModule,
+  NbIconModule,
+  NbSpinnerModule,
+  NbDatepickerModule,
+} from '@nebular/theme';
+
+const  NB_MODULES = [
+  NbActionsModule,
+  NbButtonModule,
+  NbCardModule,
+  NbInputModule,
+  NbTabsetModule,
+  NbUserModule,
+  NbRadioModule,
+  NbSelectModule,
+  NbListModule,
+  NbIconModule,
+  NbSpinnerModule,
+  NbDatepickerModule,
+  NbInputModule,
+];
+
+@NgModule({
+  imports: [
+    ThemeModule,
+    AuthModule,
+    Ng2SmartTableModule,
+    OrganizationsRoutingModule,
+    ComponentsModule,
+    ReactiveFormsModule,
+    ...NB_MODULES,
+  ],
+  declarations: [
+    OrganizationsComponent,
+    OrganizationComponent,
+  ],
+  entryComponents: [
+  ],
+  providers: [],
+})
+export class OrganizationsModule { }
