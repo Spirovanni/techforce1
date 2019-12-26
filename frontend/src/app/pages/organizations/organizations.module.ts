@@ -26,6 +26,9 @@ import {
   NbSpinnerModule,
   NbDatepickerModule,
 } from '@nebular/theme';
+import { OrganizationListComponent } from './organization/organization-list/organization-list.component';
+import { OrganizationDetailsComponent } from './organization/organization-details/organization-details.component';
+import { OrganizationFormComponent } from './organization/organization-form/organization-form.component';
 
 const  NB_MODULES = [
   NbActionsModule,
@@ -56,6 +59,9 @@ const  NB_MODULES = [
   declarations: [
     OrganizationsComponent,
     OrganizationComponent,
+    OrganizationListComponent,
+    OrganizationDetailsComponent,
+    OrganizationFormComponent,
   ],
   entryComponents: [
   ],
