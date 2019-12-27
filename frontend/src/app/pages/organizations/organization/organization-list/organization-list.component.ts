@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../../@core/backend/common/services/api.service';
 
 @Component({
   selector: 'ngx-organization-list',
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrganizationListComponent implements OnInit {
 
-  organizations = ['Chase Bank', 'Bank of America', 'Wells Fargo'];
-  constructor() { }
+  organizations: () => () => any;
+  constructor(
+    private apiService: ApiService,
+  ) { }
 
   ngOnInit() {
+    this.organizations = this.apiService.getOrganizations();
   }
 
 }

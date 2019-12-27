@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ApiService {
 
+  private organizations = ['Chase Bank', 'Bank of America', 'Wells Fargo'];
   baseUrl = 'http://localhost:3001/api/organizations/';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -22,6 +23,7 @@ export class ApiService {
   ) { }
 
   getOrganizations() {
-    return this.httpClient.get(this.baseUrl, {headers: this.headers});
+    return this.getOrganizations;
+    // return this.httpClient.get(this.baseUrl, {headers: this.headers});
   }
 }

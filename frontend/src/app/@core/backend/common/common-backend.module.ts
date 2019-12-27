@@ -7,6 +7,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserData } from '../../interfaces/common/users';
+import { OrganizationData } from '../../interfaces/common/organizations';
 import { UsersService } from './services/users.service';
 import { UsersApi } from './api/users.api';
 import { HttpService } from './api/http.service';
@@ -25,6 +26,7 @@ const SERVICES = [
   { provide: UserData, useClass: UsersService },
   { provide: CountryData, useClass: CountriesService },
   { provide: SettingsData, useClass: SettingsService },
+  { provide: OrganizationData, useClass: ApiService },
 ];
 
 @NgModule({
@@ -37,7 +39,6 @@ export class CommonBackendModule {
       providers: [
         ...API,
         ...SERVICES,
-        ApiService,
       ],
     };
   }
