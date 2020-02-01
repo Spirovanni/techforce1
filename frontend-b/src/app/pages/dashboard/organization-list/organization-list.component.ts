@@ -6,6 +6,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../@core/backend/common/services/api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ngx-organization-list',
@@ -21,7 +22,7 @@ export class OrganizationListComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.apiService.getOrganizations().subscribe(
+    this.apiService.getOrganizations().arguments(
       data => {
         this.organizations = data;
       },

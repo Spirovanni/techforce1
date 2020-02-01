@@ -8,7 +8,7 @@ import { ApiService } from '../../../../@core/backend/common/services/api.servic
 })
 export class OrganizationListComponent implements OnInit {
 
-  organizations: () => () => any;
+  organizations: () =>  any;
   constructor(
     private apiService: ApiService,
   ) { }
